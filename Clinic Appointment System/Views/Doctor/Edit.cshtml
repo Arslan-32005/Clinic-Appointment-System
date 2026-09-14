@@ -10,7 +10,7 @@
 <label for="ConsultationFee">Consultation Fee</label>
 <input type="number" id="ConsultationFee" name="ConsultationFee" value="@Model.ConsultationFee" />
 <label for="IsAvailable">Is Available</label>
-        <input type="checkbox" id="IsAvailable" name="IsAvailable" checked=@(Model.IsAvailable ? "checked" : "") />
+        <input type="checkbox" id="IsAvailable" name="IsAvailable" @(Model.IsAvailable ? "checked" : "") />
 <button type="submit">Update Doctor</button>
 </form>
 </div>
