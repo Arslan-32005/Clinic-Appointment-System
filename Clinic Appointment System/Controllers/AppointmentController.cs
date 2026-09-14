@@ -51,6 +51,19 @@ namespace Clinic_Appointment_System.Controllers
         [HttpPost]
         public IActionResult Add(Appointment appointment)
         {
+            var doctor = _context.Doctors
+                .FirstOrDefault(d => d.Id == appointment.DoctorId);
+
+            if (doctor == null || doctor.IsAvailable == false)
+            {
+                ViewBag.ErrorMessage = "Selected doctor is not available.";
+                ViewBag.Doctors = _context.Doctors
+                    .Where(d => d.IsAvailable == true)
+                    .ToList();
+
+                return View(appointment);
+            }
+
             bool alreadyBooked = _context.Appointments.Any(a =>
                 a.DoctorId == appointment.DoctorId &&
                 a.AppointmentDate == appointment.AppointmentDate &&

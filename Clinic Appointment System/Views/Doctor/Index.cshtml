@@ -1,6 +1,12 @@
 ﻿@model IEnumerable< Clinic_Appointment_System.Models.Doctor>
 <link rel="stylesheet" href="~/css/site.css" />
 <h2>Detail Of Doctors</h2>
+@if (ViewBag.Error != null)
+{
+    <script>
+        alert('@ViewBag.Error');
+    </script>
+}
 <div>
     <table>
         <thead>
@@ -22,7 +28,7 @@
                     <td>@Doctor.IsAvailable</td>
                     <td>
                         <a href="/Doctor/Edit/@Doctor.Id">Edit</a>
-                        <a href="/Doctor/Delete/@Doctor.Id" onclick="return confirm('Are you sure you want to delete this doctor?');">Delete</a>
+                        <a href="/Doctor/Delete/@Doctor.Id"onclick="return confirm('Are you sure you want to delete this doctor?');">Delete</a>
                     </td>
                 </tr>            
             }

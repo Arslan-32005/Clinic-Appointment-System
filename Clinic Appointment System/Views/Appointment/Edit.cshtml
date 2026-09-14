@@ -1,6 +1,12 @@
 ﻿@model Clinic_Appointment_System.Models.Appointment
 <h2>Edit Appointment</h2>
 <link rel="stylesheet" href="~/css/site.css" />
+@if (ViewBag.ErrorMessage != null)
+{
+    <script>
+        alert('@ViewBag.ErrorMessage');
+    </script>
+}
 <div>
     <form action="/Appointment/Edit/@Model.Id" method="post" id="AppointmentForm">
         <input type="hidden" name="Id" value="@Model.Id" />

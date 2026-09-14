@@ -1,6 +1,12 @@
 ﻿@model Clinic_Appointment_System.Models.Appointment
 <h2>Add Appointment</h2>
 <link rel="stylesheet" href="~/css/site.css" />
+@if (ViewBag.ErrorMessage != null)
+{
+    <script>
+        alert('@ViewBag.ErrorMessage');
+    </script>
+}
 <div>
     <form action="/Appointment/Add" method="post" id="AppointmentForm">
         <label for="PatientName">Patient Name</label>
@@ -13,11 +19,10 @@
         <input type="time" id="AppointmentTime" name="AppointmentTime" />
         <label for="DoctorId">Doctor</label>
         <select id="DoctorId" name="DoctorId" />
-         @foreach(var doctor in ViewBag.Doctors)
+        @foreach (var doctor in ViewBag.Doctors)
             {
                 <option value="@doctor.Id">@doctor.FullName</option>
             }
-        </select>
             <button type="submit">Add Appointment</button>
     </form>
     <script src="/js/site.js"></script>
