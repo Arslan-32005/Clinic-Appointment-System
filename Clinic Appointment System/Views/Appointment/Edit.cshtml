@@ -1,0 +1,24 @@
+﻿@model Clinic_Appointment_System.Models.Appointment
+<h2>Edit Appointment</h2>
+<link rel="stylesheet" href="~/css/site.css" />
+<div>
+    <form action="/Appointment/Edit/@Model.Id" method="post" id="AppointmentForm">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <label for="PatientName">Patient Name</label>
+        <input type="text" id="PatientName" name="PatientName" value="@Model.PatientName" />
+        <label for="PatientPhone">Patient Phone</label>
+        <input type="text" id="PatientPhone" name="PatientPhone" value="@Model.PatientPhone" />
+        <label for="AppointmentDate">Appointment Date</label>
+        <input type="date" id="AppointmentDate" name="AppointmentDate" value="@Model.AppointmentDate.ToString("yyyy-MM-dd")" />
+        <label for="AppointmentTime">Appointment Time</label>
+        <input type="text" id="AppointmentTime" name="AppointmentTime" value="@Model.AppointmentTime"/>
+        <label for="DoctorId">Doctor</label>
+        <select id="DoctorId" name="DoctorId">
+        @foreach (var doctor in ViewBag.Doctors)
+        {
+            <option value="@doctor.Id" selected="@(doctor.Id == Model.DoctorId)">@doctor.FullName</option>
+        }
+        </select>
+        <button type="submit">Save Changes</button>
+    </form>
+</div>

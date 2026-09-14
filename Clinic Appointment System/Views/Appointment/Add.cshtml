@@ -1,0 +1,24 @@
+﻿@model Clinic_Appointment_System.Models.Appointment
+<h2>Add Appointment</h2>
+<link rel="stylesheet" href="~/css/site.css" />
+<div>
+    <form action="/Appointment/Add" method="post" id="AppointmentForm">
+        <label for="PatientName">Patient Name</label>
+        <input type="text" id="PatientName" name="PatientName" />
+        <label for="PatientPhone">Patient Phone</label>
+        <input type="text" id="PatientPhone" name="PatientPhone" />
+        <label for="AppointmentDate">Appointment Date</label>
+        <input type="date" id="AppointmentDate" name="AppointmentDate" />
+        <label for="AppointmentTime">Appointment Time</label>
+        <input type="time" id="AppointmentTime" name="AppointmentTime" />
+        <label for="DoctorId">Doctor</label>
+        <select id="DoctorId" name="DoctorId" />
+         @foreach(var doctor in ViewBag.Doctors)
+            {
+                <option value="@doctor.Id">@doctor.FullName</option>
+            }
+        </select>
+            <button type="submit">Add Appointment</button>
+    </form>
+    <script src="/js/site.js"></script>
+</div>

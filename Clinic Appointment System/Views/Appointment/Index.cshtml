@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Clinic_Appointment_System.Models.Appointment>
+<link rel="stylesheet" href="~/css/site.css" />
+<h2>Appointments</h2>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Patient Phone</th>
+                <th>Appointment Date</th>
+                <th>Appointment Time</th>
+                <th>Doctor</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var appointment in Model)
+            {
+                <tr>
+                    <td>@appointment.PatientName</td>
+                    <td>@appointment.PatientPhone</td>
+                    <td>@appointment.AppointmentDate.ToString("yyyy-MM-dd")</td>
+                    <td>@appointment.AppointmentTime</td>
+                    <td>@appointment.Doctor.FullName</td>
+                    <td>
+                        <a href="/Appointment/Edit/@appointment.Id">Edit</a>
+                        <a href="/Appointment/Delete/@appointment.Id" onclick="return confirm('Are you sure you want to delete this appointment?');">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <form action="/Appointment/Index" method="get">
+        <label for="Search">Search:</label>
+        <input type="text" id="Search" name="search" />
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div>
+    <a href="/Appointment/Index?sortByAppointmentDate=true">Sort by Appointment Date</a>
+</div>
+<div class="pagination">
+    @if (ViewBag.CurrentPage > 1)
+    {
+        <a href="/Appointment/Index?page=@(ViewBag.CurrentPage - 1)&search=@ViewBag.Search&sortByAppointmentDate=@ViewBag.SortByAppointmentDate">Previous</a>
+    }
+    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+    {
+        <a href="/Appointment/Index?page=@(ViewBag.CurrentPage + 1)&search=@ViewBag.Search&sortByAppointmentDate=@ViewBag.SortByAppointmentDate">Next</a>
+    }
+</div>

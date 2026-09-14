@@ -1,0 +1,17 @@
+﻿@model Clinic_Appointment_System.Models.Doctor
+<h2>Add the Doctor</h2>
+<link rel="stylesheet" href="~/css/site.css" />
+<div>
+    <form action="/Doctor/Add" method="post" id="DoctorForm">
+        <label for="FullName">Name</label>
+        <input type="text" id="FullName" name="FullName" />
+        <label for="Specialization">Specialization</label>
+        <input type="text" id="Specialization" name="Specialization" />
+        <label for="ConsultationFee">Consultation Fee</label>
+        <input type="number" id="ConsultationFee" name="ConsultationFee" step="0.01" />
+        <label for="IsAvailable">Is Available</label>
+        <input type="checkbox" id="IsAvailable" name="IsAvailable" />
+        <button type="submit">Add Doctor</button>
+    </form>
+    <script src="/js/site.js"></script>
+</div>
