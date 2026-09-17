@@ -17,19 +17,17 @@ namespace Clinic_Appointment_System.Controllers
         public IActionResult Index(string search,string sortbyappointments,int page=1)
         {
 
-            var appointments = _context.Appointments.Include(a => a.Doctor).ToList();
+            IQueryable<Appointment> query = _context.Appointments.Include(a => a.Doctor);
             int pageSize = 4;
-            List<Appointment> filtered = appointments;
             if (!string.IsNullOrEmpty(search))
-            {
-                filtered = appointments.Where(a => a.PatientName.Contains(search)).ToList();
-            }
-            if(!string.IsNullOrEmpty(sortbyappointments))
-            {
-                filtered=filtered.OrderBy(a => a.AppointmentDate).ToList();
-            }
-            int totalpages=(int)Math.Ceiling((double)filtered.Count / pageSize);
-            filtered = filtered.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                query = query.Where(a => a.PatientName.Contains(search));
+
+            if (!string.IsNullOrEmpty(sortbyappointments))
+                query = query.OrderBy(a => a.AppointmentDate);
+
+            int totalpages = (int)Math.Ceiling((double)query.Count() / pageSize);
+
+            var filtered = query.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             ViewBag.CurrentPage = page;
             ViewBag.TotalPages = totalpages;
             ViewBag.Search = search;
