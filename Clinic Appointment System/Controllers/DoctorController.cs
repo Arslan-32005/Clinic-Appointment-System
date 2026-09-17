@@ -36,7 +36,6 @@ namespace Clinic_Appointment_System.Controllers
             {
                 return NotFound();
             }
-            _context.SaveChanges();
             return View(doctor);
 
         }
@@ -72,7 +71,7 @@ namespace Clinic_Appointment_System.Controllers
             {
 
                 ViewBag.ErrorMessage = "Cannot delete doctor with existing appointments.";
-                return View("Index",_context.Appointments.ToList());
+                return View("Index",_context.Doctors.ToList());
             }
             _context.Doctors.Remove(doctor);
             _context.SaveChanges();

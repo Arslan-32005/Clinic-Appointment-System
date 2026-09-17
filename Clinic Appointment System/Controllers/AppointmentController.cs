@@ -26,7 +26,7 @@ namespace Clinic_Appointment_System.Controllers
             }
             if(!string.IsNullOrEmpty(sortbyappointments))
             {
-                filtered=appointments.OrderBy(a => a.AppointmentDate).ToList();
+                filtered=filtered.OrderBy(a => a.AppointmentDate).ToList();
             }
             int totalpages=(int)Math.Ceiling((double)filtered.Count / pageSize);
             filtered = filtered.Skip((page - 1) * pageSize).Take(pageSize).ToList();
