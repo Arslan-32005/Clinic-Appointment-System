@@ -9,6 +9,8 @@
                 <th>Patient Phone</th>
                 <th>Appointment Date</th>
                 <th>Appointment Time</th>
+                <th>Reason</th>
+                <th>Payment Status</th>
                 <th>Doctor</th>
                 <th>Actions</th>
             </tr>
@@ -21,6 +23,8 @@
                     <td>@appointment.PatientPhone</td>
                     <td>@appointment.AppointmentDate.ToString("yyyy-MM-dd")</td>
                     <td>@appointment.AppointmentTime</td>
+                    <td>@appointment.Reason</td>
+                    <td>@appointment.PaymentStatus</td>
                     <td>@appointment.Doctor.FullName</td>
                     <td>
                         <a href="/Appointment/Edit/@appointment.Id">Edit</a>
@@ -33,21 +37,21 @@
 </div>
 <div>
     <form action="/Appointment/Index" method="get">
-        <label for="Search">Search:</label>
-        <input type="text" id="Search" name="search" />
+        <label for="search">Search</label>
+        <input type="search" name="search" id="search" />
         <button type="submit">Search</button>
     </form>
 </div>
 <div>
-    <a href="/Appointment/Index?sortByAppointmentDate=true">Sort by Appointment Date</a>
+    <a href="/Appointment/Index?sortbyAppointments=true">Sort by Appointment Date</a>
 </div>
 <div class="pagination">
-    @if (ViewBag.CurrentPage > 1)
-    {
-        <a href="/Appointment/Index?page=@(ViewBag.CurrentPage - 1)&search=@ViewBag.Search&sortByAppointmentDate=@ViewBag.SortByAppointmentDate">Previous</a>
-    }
-    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
-    {
-        <a href="/Appointment/Index?page=@(ViewBag.CurrentPage + 1)&search=@ViewBag.Search&sortByAppointmentDate=@ViewBag.SortByAppointmentDate">Next</a>
-    }
+   @if(ViewBag.CurrentPage > 1)
+   {
+       <a href="/Appointment/Index?page=@(ViewBag.CurrentPage - 1)&search=@ViewBag.Search&sortbyappointments=@ViewBag.sortbyappointments">Previous</a>
+   }
+   @if(ViewBag.CurrentPage < ViewBag.TotalPages)
+   {
+       <a href="/Appointment/Index?page=@(ViewBag.CurrentPage + 1)&search=@ViewBag.Search&sortbyappointments=@ViewBag.sortbyappointments">Next</a>
+   }
 </div>

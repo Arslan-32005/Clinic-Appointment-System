@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Clinic_Appointment_System.Controllers
 {
     public class DoctorController : Controller
-    { 
+    {
         private readonly AppDbContext _context;
         public DoctorController(AppDbContext context)
         {
@@ -14,7 +14,7 @@ namespace Clinic_Appointment_System.Controllers
         }
         public IActionResult Index()
         {
-            var doctors= _context.Doctors.ToList();
+            var doctors = _context.Doctors.ToList();
             return View(doctors);
         }
         public IActionResult Add()
@@ -31,48 +31,55 @@ namespace Clinic_Appointment_System.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var Doctor=_context.Doctors.Include(d=>d.Appointments).FirstOrDefault(d=>d.Id==id);
-            if(Doctor==null)
+            var doctor = _context.Doctors.Include(d => d.Appointments).FirstOrDefault(d => d.Id == id);
+            if(doctor==null)
             {
                 return NotFound();
             }
-            return View(Doctor);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+
         }
         [HttpPost]
         public IActionResult Edit(int id, Doctor updateddoctor)
         {
             var doctor = _context.Doctors.Find(id);
-            if(doctor==null)
+            if(doctor == null)
             {
                 return NotFound();
             }
             doctor.FullName = updateddoctor.FullName;
             doctor.Specialization = updateddoctor.Specialization;
-            doctor.ConsultationFee=updateddoctor.ConsultationFee;
+            doctor.Email = updateddoctor.Email;
+            doctor.PhoneNumber = updateddoctor.PhoneNumber;
+            doctor.Qualification = updateddoctor.Qualification;
+            doctor.ConsultationFee = updateddoctor.ConsultationFee;
+            doctor.Gender = updateddoctor.Gender;
             doctor.IsAvailable = updateddoctor.IsAvailable;
             _context.SaveChanges();
             return RedirectToAction("Index");
+
         }
         public IActionResult Delete(int id)
         {
             var doctor = _context.Doctors.Find(id);
-            
-            if(doctor== null)
+            if (doctor == null)
             {
                 return NotFound();
             }
             bool hasAppointments = _context.Appointments.Any(a => a.DoctorId == id);
             if(hasAppointments)
             {
-                ViewBag.Error = "Cannot delete doctor with existing appointments.";
-                return View("Index",_context.Doctors.ToList());
-
+                ViewBag.ErrorMessage = "Cannot delete doctor with existing appointments.";
             }
             _context.Doctors.Remove(doctor);
             _context.SaveChanges();
             return RedirectToAction("Index");
-
         }
-        
+
+
+
+
+
     }
 }

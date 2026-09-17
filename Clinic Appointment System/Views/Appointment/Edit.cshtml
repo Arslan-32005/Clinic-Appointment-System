@@ -11,19 +11,27 @@
     <form action="/Appointment/Edit/@Model.Id" method="post" id="AppointmentForm">
         <input type="hidden" name="Id" value="@Model.Id" />
         <label for="PatientName">Patient Name</label>
-        <input type="text" id="PatientName" name="PatientName" value="@Model.PatientName" />
+        <input type="text" id="PatientName" name="PatientName" value="@Model.PatientName" /><br />
         <label for="PatientPhone">Patient Phone</label>
-        <input type="text" id="PatientPhone" name="PatientPhone" value="@Model.PatientPhone" />
+        <input type="text" id="PatientPhone" name="PatientPhone" value="@Model.PatientPhone" /><br />
         <label for="AppointmentDate">Appointment Date</label>
-        <input type="date" id="AppointmentDate" name="AppointmentDate" value="@Model.AppointmentDate.ToString("yyyy-MM-dd")" />
+        <input type="date" id="AppointmentDate" name="AppointmentDate" value="@Model.AppointmentDate.ToString("yyyy-MM-dd")" /><br />
         <label for="AppointmentTime">Appointment Time</label>
-        <input type="text" id="AppointmentTime" name="AppointmentTime" value="@Model.AppointmentTime"/>
+        <input type="text" id="AppointmentTime" name="AppointmentTime" value="@Model.AppointmentTime"/><br />
+        <label for="Reason">Reason</label>
+        <input type="text" id="Reason" name="Reason" value="@Model.Reason" /><br />
+        <label for="PaymentStatus">Payment Status</label>
+        <select id="PaymentStatus" name="PaymentStatus">
+            <option value="Paid" selected="@Model.PaymentStatus == "Paid">Paid</option>
+            <option value="Unpaid" selected="@Model.PaymentStatus == "Unpaid">Unpaid</option>
+        </select><br />
         <label for="DoctorId">Doctor</label>
         <select id="DoctorId" name="DoctorId">
-        @foreach (var doctor in ViewBag.Doctors)
-        {
-            <option value="@doctor.Id" selected="@(doctor.Id == Model.DoctorId)">@doctor.FullName</option>
-        }
+             @foreach(var doctor in ViewBag.Doctors)
+            {
+                <option value="@doctor.Id" selected="@(doctor.Id==Model.DoctorId)">@doctor.FullName</option>
+            }
+        
         </select>
         <button type="submit">Save Changes</button>
     </form>

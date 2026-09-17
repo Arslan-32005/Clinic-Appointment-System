@@ -1,19 +1,17 @@
 ﻿@model IEnumerable< Clinic_Appointment_System.Models.Doctor>
 <link rel="stylesheet" href="~/css/site.css" />
 <h2>Detail Of Doctors</h2>
-@if (ViewBag.Error != null)
-{
-    <script>
-        alert('@ViewBag.Error');
-    </script>
-}
 <div>
     <table>
         <thead>
             <tr>
                 <th>Full Name</th>
                 <th>Specialization</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Qualification</th>
                 <th>Consultation Fee</th>
+                <th>Gender</th>
                 <th>IsAvailable</th>
                 <th>Actions</th>
             </tr>
@@ -24,7 +22,11 @@
                 <tr>
                     <td>@Doctor.FullName</td>
                     <td>@Doctor.Specialization</td>
+                    <td>@Doctor.Email</td>
+                    <td>@Doctor.PhoneNumber</td>
+                    <td>@Doctor.Qualification</td>
                     <td>@Doctor.ConsultationFee</td>
+                    <td>@Doctor.Gender</td>
                     <td>@Doctor.IsAvailable</td>
                     <td>
                         <a href="/Doctor/Edit/@Doctor.Id">Edit</a>
