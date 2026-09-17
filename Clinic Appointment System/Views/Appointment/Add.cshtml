@@ -25,7 +25,7 @@
             <option value="Unpaid">Unpaid</option>
         </select><br />
         <label for="DoctorId">Doctor</label>
-        <select id="DoctorId" name="DoctorId" />
+        <select id="DoctorId" name="DoctorId">
         @foreach(var doctor in ViewBag.Doctors)
             {
                 <option value="@doctor.Id">@doctor.FullName</option>
