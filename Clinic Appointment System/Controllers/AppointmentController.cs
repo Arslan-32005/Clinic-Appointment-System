@@ -48,7 +48,7 @@ namespace Clinic_Appointment_System.Controllers
             var doctor = _context.Doctors.FirstOrDefault(d => d.Id == appointment.DoctorId);
             if (doctor == null || doctor.IsAvailable == false)
             {
-                ViewBag.errormessage = "Selected doctor is not available";
+                ViewBag.ErrorMessage = "Selected doctor is not available";
                 ViewBag.Doctors = _context.Doctors.Where(d => d.IsAvailable == true).ToList();
                 return View(appointment);
             }

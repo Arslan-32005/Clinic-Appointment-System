@@ -1,6 +1,12 @@
 ﻿@model IEnumerable< Clinic_Appointment_System.Models.Doctor>
 <link rel="stylesheet" href="~/css/site.css" />
 <h2>Detail Of Doctors</h2>
+if(ViewBag.ErrorMessage != null)
+{
+<script>
+    alert('@ViewBag.ErrorMessage');
+</script>
+}
 <div>
     <table>
         <thead>

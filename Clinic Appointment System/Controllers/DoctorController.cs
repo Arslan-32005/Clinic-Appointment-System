@@ -37,7 +37,7 @@ namespace Clinic_Appointment_System.Controllers
                 return NotFound();
             }
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return View(doctor);
 
         }
         [HttpPost]
@@ -70,7 +70,9 @@ namespace Clinic_Appointment_System.Controllers
             bool hasAppointments = _context.Appointments.Any(a => a.DoctorId == id);
             if(hasAppointments)
             {
+
                 ViewBag.ErrorMessage = "Cannot delete doctor with existing appointments.";
+                return View("Index",_context.Appointments.ToList());
             }
             _context.Doctors.Remove(doctor);
             _context.SaveChanges();
