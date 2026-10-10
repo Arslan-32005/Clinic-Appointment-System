@@ -16,15 +16,15 @@
     <option value="MBBS" selected="@Model.Qualification == "MBBS"">MBBS</option>
     <option value="MD" selected="@Model.Qualification == "MD"">MD</option>
     <option value="DO" selected="@Model.Qualification == "DO"">DO</option>
-    <option value="PhD" selected="@Model.Qualification == "PhD"">PhD</option>
+    <option value="PhD" selected="@Model.Qualification == "phD"">PhD</option>
 </select><br />
 <label for="ConsultationFee">Consultation Fee</label>
 <input type="number" id="ConsultationFee" name="ConsultationFee" value="@Model.ConsultationFee" /><br />
 <label for="Gender">Gender</label>
 <select id="Gender" name="Gender">
-    <option value="Male" selected="@Model.Gender == "Male"">Male</option>
-    <option value="Female" selected="@Model.Gender == "Female"">Female</option>
-    <option value="Other" selected="@Model.Gender == "Other"">Other</option>
+    <option value="Male" selected="@(Model.Gender == "Male")">Male</option>
+    <option value="Female" selected="@(Model.Gender == "Female")">Female</option>
+    <option value="Other" selected="@(Model.Gender == "Other")">Other</option>
 </select><br />
 <label for="IsAvailable">Is Available</label>
         <input type="checkbox" id="IsAvailable" name="IsAvailable" value="true" checked="@(Model?.IsAvailable==true)" />
